@@ -1,0 +1,178 @@
+@import "scss/variables";
+@import "scss/mixins";
+
+h1 {
+  color: $color-secundario;
+}
+
+.inicio {
+  position: relative;
+  background-image: url(images/banner.jpg);
+  height: 800px;
+  background-size: cover;
+  background-position: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color-overlay;
+    z-index: 1;
+  }
+}
+
+.centralInicio {
+  @include flex-center();
+  height: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+
+  h3 {
+    width: 600px;
+    max-width: 100%;
+    color: $color-secundario;
+    padding: 20px;
+    margin-top: -20px;
+  }
+}
+
+button {
+  @include button-style($color-primario, $color-secundario);
+}
+
+.blue {
+  color: $color-primario;
+}
+
+nav {
+  display: flex;
+  padding: 20px;
+
+  p {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .menu {
+    color: $color-secundario;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2;
+    text-align: right;
+  }
+
+  .navP {
+    color: $color-secundario;
+    z-index: 2;
+  }
+}
+
+.img-common {
+  border-radius: 200px;
+}
+
+$divs-colores: (
+  Blanco: $color-secundario,
+  Azul: $color-primario,
+);
+
+@each $nombre, $color in $divs-colores {
+  .div#{$nombre} {
+    background-color: $color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 10px;
+    margin: 0 auto;
+    width: 100%;
+
+    & button {
+      @include button-style($color-primario, $color-secundario);
+    }
+
+    p {
+      color: $color-texto;
+    }
+
+    @if ($nombre != Blanco) {
+      h3,
+      p {
+        color: $color-borde-blanco;
+      }
+    }
+
+    img {
+      @extend .img-common;
+      padding: 10px;
+      display: inline-block;
+      @if ($nombre == Blanco) {
+        order: 1;
+        @include border($color-borde-blanco);
+        margin-right: 20px;
+      } @else if ($nombre == Azul) {
+        order: 2;
+        @include border($color-borde-gris);
+        margin-left: 20px;
+      }
+    }
+
+    .informacion {
+      text-align: left;
+      width: 700px;
+      padding-left: 50px;
+      padding-right: 40px;
+      display: inline-block;
+      @if ($nombre == Blanco) {
+        order: 2;
+      } @else if ($nombre == Azul) {
+        order: 1;
+      }
+      button {
+        @if ($nombre == Blanco) {
+          @include button-style($color-primario, $color-secundario);
+        } @else {
+          @include button-style($color-secundario, $color-primario);
+        }
+      }
+    }
+  }
+}
+
+.divMas {
+  text-align: center;
+  color: $color-texto;
+}
+
+.divMas h2 {
+  color: black;
+}
+
+.imagenes {
+  display: flex;
+
+  div {
+    img {
+      @extend .img-common;
+      width: 200px;
+      @include border($color-borde-gris);
+      padding: 5px;
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 150px;
+  color: $color-texto;
+
+  div {
+    img {
+      border: none;
+      width: 50px;
+    }
+  }
+}

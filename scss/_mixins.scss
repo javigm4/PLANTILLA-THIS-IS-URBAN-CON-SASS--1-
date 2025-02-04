@@ -1,0 +1,19 @@
+@mixin flex-center($direction: column) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin button-style($bg-color, $text-color) {
+  background-color: $bg-color;
+  color: $text-color;
+  padding: 15px;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+@mixin border($color) {
+  border: 1px solid $color;
+}
